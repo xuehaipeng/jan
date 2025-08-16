@@ -1,0 +1,10 @@
+{
+  "welcome": "Hai, apa kabar?",
+  "description": "Ada yang bisa saya bantu hari ini?",
+  "status": {
+    "empty": "Tidak Ada Obrolan Ditemukan"
+  },
+  "sendMessage": "Kirim Pesan",
+  "newConversation": "Percakapan Baru",
+  "clearHistory": "Hapus Riwayat"
+}
