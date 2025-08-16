@@ -100,12 +100,30 @@ const SettingsMenu = () => {
     setExpandedProviders(!expandedProviders)
   }
 
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = ''
+    }
+
+    return () => {
+      document.body.style.overflow = ''
+    }
+  }, [isMenuOpen])
+
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen)
   }
 
   return (
     <>
+      {isMenuOpen && (
+        <div
+          className="fixed inset-0 bg-black/50 z-0"
+          onClick={toggleMenu}
+        />
+      )}
       <button
         className="fixed top-4 right-4 sm:hidden size-5 cursor-pointer items-center justify-center rounded hover:bg-main-view-fg/10 transition-all duration-200 ease-in-out data-[state=open]:bg-main-view-fg/10 z-20"
         onClick={toggleMenu}

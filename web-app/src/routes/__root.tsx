@@ -21,6 +21,8 @@ import { TranslationProvider } from '@/i18n/TranslationContext'
 import OutOfContextPromiseModal from '@/containers/dialogs/OutOfContextDialog'
 import LoadModelErrorDialog from '@/containers/dialogs/LoadModelErrorDialog'
 import { useSmallScreen } from '@/hooks/useMediaQuery'
+import { IconLayoutSidebar } from '@tabler/icons-react'
+import { useLeftPanel } from '@/hooks/useLeftPanel'
 import {
   ResizablePanelGroup,
   ResizablePanel,
@@ -75,7 +77,32 @@ const AppLayout = () => {
         <DialogAppUpdater />
 
         {/* Use ResizablePanelGroup only on larger screens */}
-        {!isSmallScreen && isLeftPanelOpen ? (
+        {isSmallScreen ? (
+          <div className="flex h-full">
+            {/* Hamburger Menu Button */}
+            <button
+              className="absolute top-4 left-4 z-50"
+              onClick={() => setLeftPanel(!isLeftPanelOpen)}
+            >
+              <IconLayoutSidebar size={18} />
+            </button>
+
+            {/* left content panel - only show if not logs route */}
+            <LeftPanel />
+
+            {/* Main content panel */}
+            <div
+              className={cn(
+                'h-full flex w-full p-1 ',
+                isLeftPanelOpen && 'w-full md:w-[calc(100%-198px)]'
+              )}
+            >
+              <div className="bg-main-view text-main-view-fg border border-main-view-fg/5 w-full rounded-lg overflow-hidden">
+                <Outlet />
+              </div>
+            </div>
+          </div>
+        ) : (
           <ResizablePanelGroup
             direction="horizontal"
             className="h-full"
@@ -105,23 +132,6 @@ const AppLayout = () => {
               </div>
             </ResizablePanel>
           </ResizablePanelGroup>
-        ) : (
-          <div className="flex h-full">
-            {/* left content panel - only show if not logs route */}
-            <LeftPanel />
-
-            {/* Main content panel */}
-            <div
-              className={cn(
-                'h-full flex w-full p-1 ',
-                isLeftPanelOpen && 'w-full md:w-[calc(100%-198px)]'
-              )}
-            >
-              <div className="bg-main-view text-main-view-fg border border-main-view-fg/5 w-full rounded-lg overflow-hidden">
-                <Outlet />
-              </div>
-            </div>
-          </div>
         )}
       </main>
       {productAnalyticPrompt && <PromptAnalytic />}

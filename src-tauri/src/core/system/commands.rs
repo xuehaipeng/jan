@@ -1,7 +1,7 @@
 use std::fs;
 use std::path::PathBuf;
 use tauri::{AppHandle, Manager, State};
-use tauri_plugin_llamacpp::cleanup_llama_processes;
+
 
 use crate::core::app::commands::{
     default_data_folder_path, get_jan_data_folder_path, update_app_configuration,
@@ -24,7 +24,7 @@ pub fn factory_reset(app_handle: tauri::AppHandle, state: State<'_, AppState>) {
 
     tauri::async_runtime::block_on(async {
         clean_up_mcp_servers(state.clone()).await;
-        let _ = cleanup_llama_processes(app_handle.clone()).await;
+        
 
         if data_folder.exists() {
             if let Err(e) = fs::remove_dir_all(&data_folder) {

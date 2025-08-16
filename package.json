@@ -29,7 +29,9 @@
     "build:icon": "tauri icon ./src-tauri/icons/icon.png",
     "build:core": "cd core && yarn build && yarn pack",
     "build:web": "yarn workspace @janhq/web-app build",
-    "build:extensions": "rimraf ./pre-install/*.tgz || true && yarn workspace @janhq/core build && cd extensions && yarn install && yarn workspaces foreach -Apt run build:publish",
+        "build:extensions": "rimraf ./pre-install/*.tgz || true && yarn workspace @janhq/core build && cd extensions && yarn install && yarn workspaces foreach -Apt run build:publish",
+    "android:init": "cd src-tauri && npx tauri android init",
+    "build:android": "cd /root/jan/src-tauri && npx tauri android build",
     "prepare": "husky"
   },
   "devDependencies": {

@@ -195,7 +195,7 @@ const LeftPanel = () => {
       <aside
         ref={panelRef}
         className={cn(
-          'text-left-panel-fg overflow-hidden',
+          'text-left-panel-fg overflow-hidden transition-transform duration-300 ease-in-out',
           // Resizable context: full height and width, no margins
           isResizableContext && 'h-full w-full',
           // Small screen context: fixed positioning and styling
@@ -206,9 +206,7 @@ const LeftPanel = () => {
             !isSmallScreen &&
             'w-48 shrink-0 rounded-lg m-1.5 mr-0',
           // Visibility controls
-          open
-            ? 'opacity-100 visibility-visible'
-            : 'w-0 absolute -top-100 -left-100 visibility-hidden'
+          open ? 'transform-none' : '-translate-x-full'
         )}
       >
         <div className="relative h-10">

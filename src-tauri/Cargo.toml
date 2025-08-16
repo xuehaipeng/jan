@@ -59,7 +59,7 @@ tauri-plugin-deep-link = "2"
 tauri-plugin-dialog = "2.2.1"
 tauri-plugin-hardware = { path = "./plugins/tauri-plugin-hardware" }
 tauri-plugin-http = { version = "2", features = ["unsafe-headers"] }
-tauri-plugin-llamacpp = { path = "./plugins/tauri-plugin-llamacpp" }
+
 tauri-plugin-log = "2.0.0-rc"
 tauri-plugin-opener = "2.2.7"
 tauri-plugin-os = "2.2.1"
